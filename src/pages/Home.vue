@@ -3,7 +3,7 @@
     <div class="q-pa-md">
       <q-circular-progress v-if="loadingConselho" indeterminate size="25px" color="primary" />
 
-      <span v-if="!loadingConselho">Exibindo mensagem: {{ conselho }}</span>
+      <span v-if="!loadingConselho">{{ conselho }}</span>
     </div>
     <img
       alt="Quasar logo"
@@ -18,8 +18,6 @@ import adviceSlipService from '../services/adviceSlipService'
 import myMemory from '../services/myMemory'
 
 export default {
-  name: 'PageIndex',
-
   data () {
     return {
       loadingConselho: true,
@@ -37,7 +35,8 @@ export default {
 
       adviceSlipService.getSlipAdvice().then(response => {
         this.conselho = response.data.slip.advice
-        this.translated(response.data.slip.advice)
+        this.loadingConselho = false
+        // this.translated(response.data.slip.advice)
       }).catch(() => {
         this.conselho = 'Não foi possível carregar o conselho!'
         this.loadingConselho = false
