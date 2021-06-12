@@ -17,19 +17,17 @@
       content-class="bg-grey-3"
     >
       <q-scroll-area class="fit">
-        <q-list>
-          <template v-for="(menuItem, i) in menuList">
-            <router-link :key="i" :to="menuItem.to" custom style="text-decoration: none">
-              <q-item clickable :active="menuItem.label === 'Outbox'" v-ripple>
-                <div class="row no-wrap items-center">
-                  <q-icon class="q-pr-md" :name="menuItem.icon" size="sm"></q-icon>
-                  {{ menuItem.label }}
-                </div>
-              </q-item>
-              <q-separator :key="'sep' + i" v-if="menuItem.separator" />
-            </router-link>
-          </template>
-        </q-list>
+        <template v-for="(menuItem, i) in menuList">
+          <router-link :key="i" :to="menuItem.to" custom style="text-decoration: none">
+            <q-item clickable :active="menuItem.label === 'Outbox'" v-ripple>
+              <div class="row no-wrap items-center">
+                <q-icon class="q-pr-md" :name="menuItem.icon" color="primary" size="sm"></q-icon>
+                <span class="text-primary">{{ menuItem.label }}</span>
+              </div>
+            </q-item>
+            <q-separator :key="'sep' + i" v-if="menuItem.separator" />
+          </router-link>
+        </template>
       </q-scroll-area>
     </q-drawer>
 
