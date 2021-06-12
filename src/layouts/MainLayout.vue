@@ -3,7 +3,13 @@
     <q-header elevated class="bg-black">
       <q-toolbar>
         <q-btn flat @click="leftDrawerOpen = !leftDrawerOpen" round dense icon="menu" />
-        <q-toolbar-title>Header</q-toolbar-title>
+        <q-toolbar-title>Projeto P</q-toolbar-title>
+
+        <q-input outlined v-model="nomeInvocador" dense dark filled style="width: 20rem" placeholder="Digite o nome de invocador...">
+          <template v-slot:append>
+            <q-btn icon="search" dense style="color: white" @click="pesquisarInvocador"/>
+          </template>
+        </q-input>
       </q-toolbar>
     </q-header>
 
@@ -42,6 +48,7 @@ export default {
   data () {
     return {
       leftDrawerOpen: true,
+      nomeInvocador: null,
       menuList: [
         {
           label: 'Home',
@@ -56,6 +63,16 @@ export default {
           separator: true
         }
       ]
+    }
+  },
+
+  methods: {
+    pesquisarInvocador () {
+      const path = `/historicoPartidas/${this.nomeInvocador}`
+
+      if (this.nomeInvocador && this.$route.path !== path) {
+        this.$router.push({ name: 'HistoricoPartidas', params: { nomeInvocador: this.nomeInvocador } })
+      }
     }
   }
 }

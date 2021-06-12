@@ -4,8 +4,18 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '/home', component: () => import('src/pages/Home.vue') },
-      { path: '/historicoPartidas', component: () => import('pages/HistoricoPartidas.vue') }
+      {
+        path: '/home',
+        name: 'Home',
+        component: () => import('src/pages/Home.vue'),
+        props: true
+      },
+      {
+        path: '/historicoPartidas/:nomeInvocador',
+        name: 'HistoricoPartidas',
+        component: () => import('pages/HistoricoPartidas.vue'),
+        props: true
+      }
     ]
   },
 
