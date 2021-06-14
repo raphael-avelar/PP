@@ -11,10 +11,10 @@
 
       <q-scroll-area style="height: calc(100vh - 122px)">
         <div class="row justify-center">
-          <template v-for="(champion, i) in champions">
+          <template v-for="(champion, i) in championsFilter">
             <div :key="i" class="q-py-md" style="height: 6.25rem; width: 8.75rem">
               <div class="row justify-center">
-                <q-img :src="require('../statics/league-of-legends/icons/champion/' + champion.image.full)" spinner-color="black" class="cursor-pointer" style="height: 48px; max-width: 48px;" />
+                <q-img :src="champion.icon" spinner-color="black" class="cursor-pointer" style="height: 48px; max-width: 48px;" />
               </div>
               <span class="row justify-center q-pt-xs text-white text-italic text-subtitle2 text-weight-bold">{{ champion.name }}</span>
             </div>
@@ -26,12 +26,13 @@
 </template>
 
 <script>
-import champions from '../statics/league-of-legends/all-champions.json'
+import AllChampions from '../statics/league-of-legends/all-champions.json'
 
 export default {
   data () {
     return {
       champions: [],
+      championsFilter: [],
       searchChampion: null
     }
   },
@@ -42,7 +43,26 @@ export default {
 
   methods: {
     loadChampions () {
-      this.champions = champions.data
+      this.champions = AllChampions.data
+      this.setAllIcons()
+
+      this.championsFilter = this.champions
+    },
+
+    setAllIcons () {
+      Object.values(this.champions).forEach(champion => {
+        champion.icon = 'img/' + champion.image.full
+      })
+    }
+  },
+
+  watch: {
+    searchChampion () {
+      if (this.searchChampion) {
+        this.championsFilter = Object.values(this.champions).filter(champion => champion.name.toLowerCase().includes(this.searchChampion.toLowerCase()))
+      } else {
+        this.championsFilter = this.champions
+      }
     }
   }
 }
