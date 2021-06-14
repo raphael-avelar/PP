@@ -15,6 +15,12 @@ const routes = [
         name: 'HistoricoPartidas',
         component: () => import('pages/HistoricoPartidas.vue'),
         props: true
+      },
+      {
+        path: '/champions',
+        name: 'Champions',
+        component: () => import('pages/Champions.vue'),
+        props: true
       }
     ]
   },

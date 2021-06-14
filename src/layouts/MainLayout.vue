@@ -28,7 +28,7 @@
             <q-item clickable :active="menuItem.label === 'Outbox'" v-ripple>
               <div class="row no-wrap items-center">
                 <q-icon class="q-pr-md" :name="menuItem.icon" color="primary" size="sm"></q-icon>
-                <span class="text-primary">{{ menuItem.label }}</span>
+                <span class="text-primary text-weight-bold">{{ menuItem.label }}</span>
               </div>
             </q-item>
             <q-separator :key="'sep' + i" v-if="menuItem.separator" />
@@ -60,6 +60,12 @@ export default {
           label: 'Histórico de Partidas',
           to: '/historicoPartidas',
           icon: 'mdi-script-text',
+          separator: true
+        },
+        {
+          label: 'Campeões',
+          to: '/champions',
+          icon: 'mdi-sword-cross',
           separator: true
         }
       ]
