@@ -48,11 +48,16 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+
+    <modal-champion ref="modalChampion" />
   </q-layout>
 </template>
 <script>
+import ModalChampion from '../modal/ModalChampion.vue'
 
 export default {
+  components: { ModalChampion },
+
   data () {
     return {
       leftDrawerOpen: true,
@@ -80,7 +85,16 @@ export default {
     }
   },
 
+  mounted () {
+    this.createRefsModals()
+  },
+
   methods: {
+    createRefsModals () {
+      this.$root.modal = {}
+      this.$root.modal.modalChampion = this.$refs.modalChampion
+    },
+
     pesquisarInvocador () {
       const path = `/historicoPartidas/${this.nomeInvocador}`
 

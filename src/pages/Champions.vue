@@ -22,7 +22,7 @@
           <template v-for="(champion, i) in championsFilter">
             <div :key="i" class="q-py-md" style="height: 6.25rem; width: 8.75rem">
               <div class="row justify-center">
-                <q-img :src="champion.icon" spinner-color="black" class="cursor-pointer" style="height: 48px; max-width: 48px;" />
+                <q-img :src="champion.icon" spinner-color="black" @click="$root.modal.modalChampion.show(champion)" class="cursor-pointer" style="height: 48px; max-width: 48px;" />
               </div>
               <span class="row justify-center q-pt-xs" style="font-family: BeaufortLoL; text-transform: uppercase; font-weight: 700; color: #c9aa71;">{{ champion.name }}</span>
             </div>
