@@ -1,17 +1,21 @@
 <template>
   <q-dialog ref="modal" persistent transition-show="scale" transition-hide="scale">
-    <q-card class="bg-teal text-white" style="width: 300px">
-      <q-card-section>
-        <div class="text-h6">Persistent</div>
-      </q-card-section>
+    <q-card style="width: 700px; max-width: 80vw;">
+      <div class="fit">
+        <q-img
+          v-if="champion"
+          :src="champion.splashs[0].img"
+          spinner-color="black"
+          img-class="modal-img-champion"
+        >
+          <div class="fixed-bottom q-ml-lg bg-transparent" v-if="!$q.screen.xs">
+            <div class="modal-champion-name">{{ champion.name }}</div>
+            <div class="modal-champion-title">{{ champion.title }}</div>
+          </div>
+        </q-img>
+      </div>
 
-      <q-card-section class="q-pt-none">
-        Click/Tap on the backdrop.
-      </q-card-section>
-
-      <q-card-actions align="right" class="bg-white text-teal">
-        <q-btn flat label="OK" v-close-popup />
-      </q-card-actions>
+      <q-btn class="absolute-top-right text-white q-ma-sm" dense round flat icon="close" v-close-popup />
     </q-card>
   </q-dialog>
 </template>
@@ -20,13 +24,41 @@
 export default {
   data () {
     return {
+      champion: null
     }
   },
 
   methods: {
-    show () {
+    show (champion) {
       this.$refs.modal.show()
+      this.champion = champion
     }
   }
 }
 </script>
+
+<style>
+.modal-img-champion {
+  filter: brightness(60%)
+}
+
+.modal-champion-name {
+  font-size: 35px;
+  font-family: BeaufortLoL;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  word-spacing: 3px;
+  font-weight: 600;
+  color: #c9aa71;
+}
+
+.modal-champion-title {
+  font-size: 26px;
+  font-family: BeaufortLoL;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  word-spacing: 3px;
+  font-weight: 600;
+  color: #c9aa71;
+}
+</style>

@@ -10,7 +10,13 @@
 
         <div class="row no-wrap">
           <template v-for="(tag, i) in tags">
-            <q-img :key="i" :src="require('../statics/league-of-legends/tags/' + tag + '.png')" @click="activeTagFilter(tag)" class="q-ml-sm cursor-pointer tag-image-style-hover" :style="tagFilter === tag ? 'height: 38px; width: 38px;' : 'height: 38px; width: 38px; opacity: 0.4'">
+            <q-img
+              :key="i"
+              :src="require('../statics/league-of-legends/tags/' + tag + '.png')"
+              @click="activeTagFilter(tag)"
+              class="q-ml-sm cursor-pointer tag-image-style-hover"
+              :style="tagFilter === tag ? 'height: 38px; width: 38px;' : 'height: 38px; width: 38px; opacity: 0.4'"
+            >
               <q-tooltip>{{ tag }}</q-tooltip>
             </q-img>
           </template>
@@ -22,9 +28,16 @@
           <template v-for="(champion, i) in championsFilter">
             <div :key="i" class="q-py-md" style="height: 6.25rem; width: 8.75rem">
               <div class="row justify-center">
-                <q-img :src="champion.icon" spinner-color="black" @click="$root.modal.modalChampion.show(champion)" class="cursor-pointer" style="height: 48px; max-width: 48px;" />
+                <q-img
+                  :src="champion.icon"
+                  spinner-color="black"
+                  @click="$root.modal.modalChampion.show(champion)"
+                  class="cursor-pointer"
+                  style="height: 48px; max-width: 48px;"
+                />
               </div>
-              <span class="row justify-center q-pt-xs" style="font-family: BeaufortLoL; text-transform: uppercase; font-weight: 700; color: #c9aa71;">{{ champion.name }}</span>
+
+              <span class="row justify-center q-pt-xs champion-name">{{ champion.name }}</span>
             </div>
           </template>
         </div>
@@ -34,7 +47,7 @@
 </template>
 
 <script>
-import AllChampions from '../statics/league-of-legends/all-champions.json'
+import AllChampions from '../statics/league-of-legends/championFull.json'
 
 export default {
   data () {
@@ -62,6 +75,16 @@ export default {
     setAllIcons () {
       Object.values(this.champions).forEach(champion => {
         champion.icon = require('../statics/league-of-legends/icons/champion/' + champion.image.full)
+        champion.splashs = this.getSplashs(champion)
+      })
+    },
+
+    getSplashs (champion) {
+      return champion.skins.map(skin => {
+        return {
+          img: require('../statics/league-of-legends/img/champion/splash/' + champion.recommended[0].champion + '_' + skin.num + '.jpg'),
+          ...skin
+        }
       })
     },
 
@@ -107,5 +130,12 @@ export default {
 <style>
 .tag-image-style-hover:hover {
   opacity: 1 !important
+}
+
+.champion-name {
+  font-family: BeaufortLoL;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #c9aa71;
 }
 </style>
