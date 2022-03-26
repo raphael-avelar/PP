@@ -1,23 +1,21 @@
 <template>
-  <div class="fit row items-stretch content-stretch">
+  <div class="fit row items-stretch content-stretch bg-dark">
     <q-page class="fit" style="margin-left: 18rem; margin-right: 18rem;">
-      {{ nomeInvocador }}
+      {{ invokerName }}
     </q-page>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['nomeInvocador'],
-
   data () {
     return {
+      invokerName: null
     }
   },
 
   mounted () {},
 
-  methods: {
-  }
+  methods: {}
 }
 </script>

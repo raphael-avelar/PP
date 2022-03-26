@@ -1,58 +1,54 @@
 <template>
-  <q-page class="flex flex-center column">
-    <div class="q-pa-md">
-      <q-circular-progress v-if="loadingConselho" indeterminate size="25px" color="primary" />
+  <q-page class="flex flex-center column bg-home">
+    <div class="q-py-lg" :style="getStyleLabelHome()">- WIKI LEAGUE -</div>
 
-      <span v-if="!loadingConselho">{{ conselho }}</span>
+    <div class="row justify-center q-gutter-lg q-px-md">
+      <q-btn
+        push
+        rounded
+        color="dark"
+        label="Histórico de Partidas"
+        icon="mdi-script-text"
+        @click="$router.push({ name: 'MatchHistory' })"
+      />
+
+      <q-btn
+        push
+        rounded
+        color="dark"
+        label="Campeões"
+        icon="mdi-sword-cross"
+        @click="$router.push({ name: 'Champions' })"
+      />
     </div>
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    >
   </q-page>
 </template>
 
 <script>
-import adviceSlipService from '../services/adviceSlipService'
-import myMemory from '../services/myMemory'
-
 export default {
   data () {
-    return {
-      loadingConselho: true,
-      conselho: ''
-    }
-  },
-
-  mounted () {
-    this.loadConselho()
+    return {}
   },
 
   methods: {
-    loadConselho () {
-      this.loadingConselho = true
-
-      adviceSlipService.getSlipAdvice().then(response => {
-        this.conselho = response.data.slip.advice
-        this.loadingConselho = false
-        // this.translated(response.data.slip.advice)
-      }).catch(() => {
-        this.conselho = 'Não foi possível carregar o conselho!'
-        this.loadingConselho = false
-      })
-    },
-
-    translated (slipAdvice) {
-      myMemory.translated(slipAdvice).then(response => {
-        this.conselho = response.data.responseData.translatedText
-        this.loadingConselho = false
-      }).catch(error => {
-        if (error.response.status === 429) this.conselho += this.conselho + '(Não foi possível traduzir o conselho, pois a API de tradução atingiu o limite de requisições!)'
-        else this.conselho = 'Não foi possível traduzir o conselho!'
-        this.loadingConselho = false
-      })
+    getStyleLabelHome () {
+      return `font-size: 32px;
+      font-family: BeaufortLoL;
+      letter-spacing: 3px;
+      word-spacing: 3px;
+      font-weight: 600;
+      color: #c9aa71`
     }
   }
 }
 </script>
+
+<style>
+.bg-home {
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../statics/homePageBackground.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+</style>

@@ -1,8 +1,8 @@
 <template>
   <div class="fit row items-stretch content-stretch bg-dark">
-    <q-page class="fit shadow-24" style="margin-left: 18rem; margin-right: 18rem;">
-      <div class="row no-wrap justify-between q-py-md" style="margin-left: 6.75rem; margin-right: 6.75rem;">
-        <q-input rounded filled outlined v-model="searchChampion" dense dark class="col-6" placeholder="Digite o nome do Campeão...">
+    <q-page class="fit shadow-24" :style="getStyle()">
+      <div class="row justify-center q-py-lg q-px-xl q-gutter-lg">
+        <q-input rounded filled outlined v-model="searchChampion" dense dark class="col-6" placeholder="Procurar Campeão...">
           <template v-slot:append>
             <q-icon name="search" dense style="color: white"/>
           </template>
@@ -44,12 +44,6 @@ export default {
       searchChampion: null,
       tagFilter: null,
       tags: ['Tank', 'Fighter', 'Mage', 'Assassin', 'Marksman', 'Support']
-      // { tag:'Tank', icon: 'Tank.png' },
-      // { tag:'Fighter', icon: 'Fighter.png' },
-      // { tag:'Mage', icon: 'Mage.png' },
-      // { tag:'Assassin', icon: 'Assassin.png' },
-      // { tag:'Marksman', icon: 'Marksman.png' },
-      // { tag:'Support', icon: 'Support.png' }
     }
   },
 
@@ -73,12 +67,25 @@ export default {
 
     activeTagFilter (tag) {
       this.tagFilter = this.tagFilter === tag ? null : tag
+    },
+
+    getStyle () {
+      if (this.$q.screen.sm) return 'margin-left: 3rem; margin-right: 3rem'
+      if (this.$q.screen.gt.sm) return 'margin-left: 14rem; margin-right: 14rem'
+
+      return ''
     }
   },
 
   watch: {
     searchChampion () {
       if (this.searchChampion) {
+        if (this.tagFilter) {
+          const championsFilter = Object.values(this.champions).filter(champion => champion.name.toLowerCase().includes(this.searchChampion.toLowerCase()))
+          this.championsFilter = Object.values(championsFilter).filter(champion => champion.tags.find(tag => tag === this.tagFilter))
+          return
+        }
+
         this.championsFilter = Object.values(this.champions).filter(champion => champion.name.toLowerCase().includes(this.searchChampion.toLowerCase()))
       } else {
         this.championsFilter = this.champions
@@ -87,9 +94,10 @@ export default {
 
     tagFilter () {
       if (this.tagFilter) {
-        this.championsFilter = Object.values(this.champions).filter(champion => champion.tags.find(tag => tag === this.tagFilter))
+        const championsFilter = Object.values(this.champions).filter(champion => champion.name.toLowerCase().includes(this.searchChampion ? this.searchChampion.toLowerCase() : ''))
+        this.championsFilter = Object.values(championsFilter).filter(champion => champion.tags.find(tag => tag === this.tagFilter))
       } else {
-        this.championsFilter = this.champions
+        this.championsFilter = Object.values(this.champions).filter(champion => champion.name.toLowerCase().includes(this.searchChampion ? this.searchChampion.toLowerCase() : ''))
       }
     }
   }

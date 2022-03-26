@@ -114,8 +114,8 @@ module.exports = function (/* ctx */) {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: 'Project P',
-        short_name: 'Project P',
+        name: 'Wiki League',
+        short_name: 'Wiki League',
         description: 'A Quasar Framework app',
         display: 'standalone',
         orientation: 'portrait',
@@ -181,7 +181,7 @@ module.exports = function (/* ctx */) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'project-p'
+        appId: 'wiki-league'
       },
 
       // More info: https://v1.quasar.dev/quasar-cli/developing-electron-apps/node-integration

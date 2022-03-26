@@ -5,15 +5,15 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       {
-        path: '/home',
+        path: '/',
         name: 'Home',
         component: () => import('src/pages/Home.vue'),
         props: true
       },
       {
-        path: '/historicoPartidas/:nomeInvocador',
-        name: 'HistoricoPartidas',
-        component: () => import('pages/HistoricoPartidas.vue'),
+        path: '/matchHistory',
+        name: 'MatchHistory',
+        component: () => import('src/pages/MatchHistory.vue'),
         props: true
       },
       {
