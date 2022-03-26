@@ -1,7 +1,7 @@
 <template>
-  <q-dialog ref="modal" persistent transition-show="scale" transition-hide="scale">
+  <q-dialog ref="modal" persistent transition-show="scale" transition-hide="scale" :maximized="$q.screen.xs">
     <q-card style="width: 700px; max-width: 80vw;">
-      <div class="fit">
+      <div class="fit bg-dark">
         <q-img
           v-if="champion"
           :src="champion.splashs[0].img"

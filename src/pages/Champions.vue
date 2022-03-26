@@ -80,9 +80,11 @@ export default {
     },
 
     getSplashs (champion) {
+      if (champion.id === 'Fiddlesticks') champion.id = 'FiddleSticks'
+
       return champion.skins.map(skin => {
         return {
-          img: require('../statics/league-of-legends/img/champion/splash/' + champion.recommended[0].champion + '_' + skin.num + '.jpg'),
+          img: require('../statics/league-of-legends/img/champion/splash/' + champion.id + '_' + skin.num + '.jpg'),
           ...skin
         }
       })
