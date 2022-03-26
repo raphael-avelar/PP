@@ -23,7 +23,7 @@
         </div>
       </div>
 
-      <q-scroll-area style="height: calc(100vh - 122px)">
+      <q-scroll-area style="height: calc(100vh - 138px)">
         <div class="row justify-center">
           <template v-for="(champion, i) in championsFilter">
             <div :key="i" class="q-py-md" style="height: 6.25rem; width: 8.75rem">
