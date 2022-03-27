@@ -12,12 +12,12 @@
           <template v-for="(tag, i) in tags">
             <q-img
               :key="i"
-              :src="require('../statics/league-of-legends/tags/' + tag + '.png')"
-              @click="activeTagFilter(tag)"
+              :src="require('../statics/league-of-legends/tags/' + tag.value + '.png')"
+              @click="activeTagFilter(tag.value)"
               class="q-ml-sm cursor-pointer tag-image-style-hover"
-              :style="tagFilter === tag ? 'height: 38px; width: 38px;' : 'height: 38px; width: 38px; opacity: 0.4'"
+              :style="tagFilter === tag.value ? 'height: 38px; width: 38px;' : 'height: 38px; width: 38px; opacity: 0.4'"
             >
-              <q-tooltip>{{ tag }}</q-tooltip>
+              <q-tooltip>{{ tag.label }}</q-tooltip>
             </q-img>
           </template>
         </div>
@@ -56,7 +56,14 @@ export default {
       championsFilter: [],
       searchChampion: null,
       tagFilter: null,
-      tags: ['Tank', 'Fighter', 'Mage', 'Assassin', 'Marksman', 'Support']
+      tags: [
+        { value: 'Tank', label: 'Tank' },
+        { value: 'Fighter', label: 'Lutador' },
+        { value: 'Mage', label: 'Mago' },
+        { value: 'Assassin', label: 'Assassino' },
+        { value: 'Marksman', label: 'Atirador' },
+        { value: 'Support', label: 'Suporte' }
+      ]
     }
   },
 
@@ -76,6 +83,7 @@ export default {
       Object.values(this.champions).forEach(champion => {
         champion.icon = require('../statics/league-of-legends/icons/champion/' + champion.image.full)
         champion.splashs = this.getSplashs(champion)
+        champion.tag = this.getTagChampion(champion)
       })
     },
 
@@ -88,6 +96,13 @@ export default {
           ...skin
         }
       })
+    },
+
+    getTagChampion (champion) {
+      return {
+        label: this.tags.find(tag => tag.value === champion.tags[0]).label,
+        img: require('../statics/league-of-legends/tags/' + champion.tags[0] + '.png')
+      }
     },
 
     activeTagFilter (tag) {

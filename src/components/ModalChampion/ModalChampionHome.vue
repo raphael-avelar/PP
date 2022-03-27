@@ -5,7 +5,7 @@
         v-if="champion"
         :src="champion.splashs[0].img"
         spinner-color="black"
-        img-class="modal-img-champion"
+        img-class="modal-home-img-champ"
       >
         <div class="fixed-bottom q-ml-lg bg-transparent q-mb-xs" v-if="!$q.screen.xs">
           <div class="modal-champion-name">{{ champion.name }}</div>
@@ -138,7 +138,7 @@ export default {
 </script>
 
 <style>
-.modal-img-champion {
+.modal-home-img-champ {
   filter: brightness(80%)
 }
 
