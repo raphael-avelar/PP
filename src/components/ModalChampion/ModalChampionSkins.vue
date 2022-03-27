@@ -8,13 +8,13 @@
       <q-splitter v-model="splitterModel" unit="px" disable separator-class="bg-transparent" style="height: 100%; padding: 7px">
         <template v-slot:before>
           <div class="q-pa-md" style="height: 90%">
-            <div class="text-h4 q-mb-md modal-label-skins">SKINS</div>
+            <div class="text-h4 q-mb-md modal-skins-label-skins">SKINS</div>
 
             <q-scroll-area :thumb-style="thumbStyleSkins" style="height: 100%">
               <template v-for="(splash, i) in champion.splashs">
                 <div
                   :key="i"
-                  class="row no-wrap items-center q-my-lg cursor-pointer modal-skin-hover"
+                  class="row no-wrap items-center q-my-lg cursor-pointer modal-skins-hover"
                   style="opacity: 0.5"
                   @click="splashSelected = splash"
                 >
@@ -27,7 +27,7 @@
                     height="75px"
                   />
 
-                  <div class="modal-label-splash q-pl-md">
+                  <div class="modal-skins-label-splash q-pl-md">
                     {{ splash.name !== 'default' ? splash.name : champion.name }}
                   </div>
                 </div>
@@ -117,18 +117,18 @@ export default {
 </script>
 
 <style>
-.modal-skin-hover:hover {
+.modal-skins-hover:hover {
   opacity: 1 !important;
 }
 
-.modal-label-skins {
+.modal-skins-label-skins {
   font-family: BeaufortLoL;
   font-weight: 800;
   letter-spacing: 0.05em;
   font-style: italic;
 }
 
-.modal-label-splash {
+.modal-skins-label-splash {
   font-family: Arial;
   text-transform: uppercase;
   font-weight: bold;

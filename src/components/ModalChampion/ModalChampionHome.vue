@@ -8,8 +8,8 @@
         img-class="modal-home-img-champ"
       >
         <div class="fixed-bottom q-ml-lg bg-transparent q-mb-xs" v-if="!$q.screen.xs">
-          <div class="modal-champion-name">{{ champion.name }}</div>
-          <div class="modal-champion-title">{{ champion.title }}</div>
+          <div class="modal-home-champ-name">{{ champion.name }}</div>
+          <div class="modal-home-champ-title">{{ champion.title }}</div>
         </div>
       </q-img>
 
@@ -19,7 +19,7 @@
             :key="i"
             rounded
             color="dark"
-            class="modal-button-between-divs"
+            class="modal-home-between-divs"
             :label="menu.label"
             :icon="menu.icon"
             :style="menu.style"
@@ -30,14 +30,14 @@
         <div class="q-py-lg">
           <q-card dark bordered class="q-mx-xl q-mt-sm shadow-24" style="border-color: #1D1D1D">
             <q-card-section class="row justify-center items-center q-pb-none">
-              <div class="text-h6 modal-stats-title">- Status Base -</div>
+              <div class="text-h6 modal-home-stats-title">- Status Base -</div>
             </q-card-section>
 
             <q-card-section class="row justify-center items-center q-gutter-x-md q-pt-none">
               <template v-for="(stats, i) in statsChampion">
                 <div :key="i" class="row items-center q-pa-sm">
                   <q-icon :name="stats.icon" />
-                  <span class="modal-stats-value q-pl-sm" :style="`color: ${stats.color}`">{{ stats.value }}</span>
+                  <span class="modal-home-stats-value q-pl-sm" :style="`color: ${stats.color}`">{{ stats.value }}</span>
                   <q-tooltip :offset="[0, 0]">{{ stats.tooltip }}</q-tooltip>
                 </div>
               </template>
@@ -142,13 +142,13 @@ export default {
   filter: brightness(80%)
 }
 
-.modal-button-between-divs {
+.modal-home-between-divs {
   display: block;
   position: absolute;
   transform: translateY(-50%) translateX(-50%)
 }
 
-.modal-champion-name {
+.modal-home-champ-name {
   font-size: 34px;
   font-family: BeaufortLoL;
   text-transform: uppercase;
@@ -158,7 +158,7 @@ export default {
   color: #c9aa71;
 }
 
-.modal-champion-title {
+.modal-home-champ-title {
   font-size: 20px;
   font-family: BeaufortLoL;
   letter-spacing: 1px;
@@ -168,7 +168,7 @@ export default {
   color: #c9aa71;
 }
 
-.modal-stats-title {
+.modal-home-stats-title {
   font-family: BeaufortLoL;
   text-transform: uppercase;
   word-spacing: 2px;
@@ -176,7 +176,7 @@ export default {
   color: #c9aa71;
 }
 
-.modal-stats-value {
+.modal-home-stats-value {
   font-family: BeaufortLoL;
   font-size: 16px;
   font-weight: 600;

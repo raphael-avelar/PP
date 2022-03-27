@@ -17,7 +17,7 @@
             </div>
 
             <div class="q-pa-md" style="text-align: center">
-              <q-img :src="champion.tag.img" @click="activeTagFilter(tag.value)" />
+              <q-img :src="champion.tag.img" />
               <div class="q-py-xs">FUNÇÃO</div>
               <div style="color: #c9aa71">{{ champion.tag.label }}</div>
             </div>
@@ -31,7 +31,7 @@
             :key="i"
             rounded
             color="dark"
-            class="modal-button-between-divs"
+            class="modal-lore-between-divs"
             :label="menu.label"
             :icon="menu.icon"
             :style="menu.style"
@@ -89,7 +89,7 @@ export default {
   filter: brightness(15%)
 }
 
-.modal-button-between-divs {
+.modal-lore-between-divs {
   display: block;
   position: absolute;
   transform: translateY(-50%) translateX(-50%)
