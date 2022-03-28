@@ -7,10 +7,22 @@
         spinner-color="black"
         img-class="modal-home-img-champ"
       >
-        <div class="fixed-bottom q-ml-lg bg-transparent q-mb-xs" v-if="!$q.screen.xs">
-          <div class="modal-home-champ-name">{{ champion.name }}</div>
-          <div class="modal-home-champ-title">{{ champion.title }}</div>
-        </div>
+        <template v-if="$q.screen.gt.sm">
+          <div class="fixed-bottom q-ml-lg bg-transparent q-mb-xs">
+            <div class="modal-home-champ-name">{{ champion.name }}</div>
+            <div class="modal-home-champ-title">{{ champion.title }}</div>
+          </div>
+
+          <div class="absolute-bottom-right bg-transparent">
+            <template v-for="(stats, i) in statsChampion">
+              <div :key="i" class="row items-center q-pa-sm">
+                <q-icon :name="stats.icon" />
+                <span class="modal-home-stats-value q-pl-sm" :style="`color: ${stats.color}`">{{ stats.value }}</span>
+                <q-tooltip :offset="[0, 0]">{{ stats.tooltip }}</q-tooltip>
+              </div>
+            </template>
+          </div>
+        </template>
       </q-img>
 
       <div class="col bg-dark">
@@ -21,29 +33,34 @@
             color="dark"
             class="modal-home-between-divs"
             :label="menu.label"
-            :icon="menu.icon"
+            :icon="$q.screen.gt.sm ? menu.icon : undefined"
             :style="menu.style"
             @click="menu.action()"
           />
         </template>
 
-        <div class="q-py-lg">
-          <q-card dark bordered class="q-mx-xl q-mt-sm shadow-24" style="border-color: #1D1D1D">
-            <q-card-section class="row justify-center items-center q-pb-none">
-              <div class="text-h6 modal-home-stats-title">- Status Base -</div>
-            </q-card-section>
+        <template v-if="$q.screen.lt.md">
+          <div class="q-mx-lg q-mt-lg">
+            <div class="modal-home-champ-name" style="font-size: 25px">{{ champion.name }}</div>
+            <div class="modal-home-champ-title" style="font-size: 14px">{{ champion.title }}</div>
+          </div>
 
-            <q-card-section class="row justify-center items-center q-gutter-x-md q-pt-none">
-              <template v-for="(stats, i) in statsChampion">
-                <div :key="i" class="row items-center q-pa-sm">
-                  <q-icon :name="stats.icon" />
-                  <span class="modal-home-stats-value q-pl-sm" :style="`color: ${stats.color}`">{{ stats.value }}</span>
-                  <q-tooltip :offset="[0, 0]">{{ stats.tooltip }}</q-tooltip>
-                </div>
-              </template>
-            </q-card-section>
-          </q-card>
-        </div>
+          <div class="q-py-lg">
+            <q-card dark bordered class="q-mx-xl q-mb-md shadow-24" style="border-color: #1D1D1D">
+              <q-card-section class="row justify-center items-center q-gutter-x-md">
+                <template v-for="(stats, i) in statsChampion">
+                  <div :key="i" class="row items-center q-pa-sm">
+                    <q-icon :name="stats.icon" />
+                    <span class="modal-home-stats-value q-pl-sm" :style="`color: ${stats.color}`">{{ stats.value }}</span>
+                    <q-tooltip :offset="[0, 0]">{{ stats.tooltip }}</q-tooltip>
+                  </div>
+                </template>
+              </q-card-section>
+            </q-card>
+          </div>
+        </template>
+
+        <div v-if="$q.screen.gt.sm" class="q-pa-md"></div>
       </div>
     </div>
 
@@ -101,12 +118,12 @@ export default {
           tooltip: 'Dano de Ataque',
           color: '#EC8C34'
         },
-        {
-          value: 0,
-          icon: 'img:' + require('../../statics/league-of-legends/icons-stats/Ability_power_icon.png'),
-          tooltip: 'Poder de Habilidade',
-          color: '#786CFF'
-        },
+        // {
+        //   value: 0,
+        //   icon: 'img:' + require('../../statics/league-of-legends/icons-stats/Ability_power_icon.png'),
+        //   tooltip: 'Poder de Habilidade',
+        //   color: '#786CFF'
+        // },
         {
           value: this.champion.stats.armor,
           icon: 'img:' + require('../../statics/league-of-legends/icons-stats/Armor_icon.png'),

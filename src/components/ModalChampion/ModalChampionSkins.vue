@@ -15,7 +15,7 @@
                 <div
                   :key="i"
                   class="row no-wrap items-center q-my-lg cursor-pointer modal-skins-hover"
-                  style="opacity: 0.5"
+                  :style="splashSelected.name === splash.name ? '' : 'opacity: 0.3'"
                   @click="splashSelected = splash"
                 >
                   <q-img
