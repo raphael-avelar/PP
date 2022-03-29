@@ -7,37 +7,44 @@
         spinner-color="black"
         img-class="modal-skills-img-champion"
       >
-        <div class="fixed-center bg-transparent">
-          <div class="modal-skills-type">{{ getLabelTypeSkill() }}</div>
-          <div class="modal-skills-name">{{ spellSelected.name }}</div>
-          <div class="modal-skills-description">{{ spellSelected.description }}</div>
-        </div>
+        <template v-if="$q.screen.gt.sm">
+          <div class="fixed-center bg-transparent">
+            <div class="modal-skills-type">{{ getLabelTypeSkill() }}</div>
+            <div class="modal-skills-name">{{ spellSelected.name }}</div>
+            <div class="modal-skills-description">{{ spellSelected.description }}</div>
+          </div>
 
-        <div class="fixed-bottom row justify-center items-center bg-transparent q-mb-xl q-gutter-lg" v-if="!$q.screen.xs">
-          <q-img
-            v-if="champion"
-            class="cursor-pointer"
-            spinner-color="black"
-            width="48px"
-            height="48px"
-            :src="require('../../statics/league-of-legends/icons/passive/' + champion.passive.image.full)"
-            :style="spellSelected.name === champion.passive.name ? 'border: solid 2px #c9aa71' : ''"
-            @click="spellSelected = champion.passive"
-          />
-
-          <template v-for="(spell, i) in champion.spells">
+          <div class="fixed-bottom row justify-center items-center bg-transparent q-mb-xl q-gutter-lg">
             <q-img
-              :key="i"
               v-if="champion"
               class="cursor-pointer"
               spinner-color="black"
               width="48px"
               height="48px"
-              :src="require('../../statics/league-of-legends/icons/spell/' + spell.image.full)"
-              :style="spellSelected.name === spell.name ? 'border: solid 2px #c9aa71' : ''"
-              @click="spellSelected = spell"
+              :src="require('../../statics/league-of-legends/icons/passive/' + champion.passive.image.full)"
+              :style="spellSelected.name === champion.passive.name ? 'border: solid 2px #c9aa71' : ''"
+              @click="spellSelected = champion.passive"
             />
-          </template>
+
+            <template v-for="(spell, i) in champion.spells">
+              <q-img
+                :key="i"
+                v-if="champion"
+                class="cursor-pointer"
+                spinner-color="black"
+                width="48px"
+                height="48px"
+                :src="require('../../statics/league-of-legends/icons/spell/' + spell.image.full)"
+                :style="spellSelected.name === spell.name ? 'border: solid 2px #c9aa71' : ''"
+                @click="spellSelected = spell"
+              />
+            </template>
+          </div>
+        </template>
+
+        <div v-else class="fixed-center bg-transparent">
+          <div class="modal-lore-champion-name">{{ champion.name }}</div>
+          <div class="text-center modal-lore-champion-name" style="font-size: 14px">Skills</div>
         </div>
       </q-img>
 
@@ -48,14 +55,51 @@
             rounded
             color="dark"
             class="modal-skills-between-divs"
-            :label="menu.label"
+            :label="$q.screen.gt.sm ? menu.label : ''"
             :icon="menu.icon"
             :style="menu.style"
             @click="menu.action()"
-          />
+          >
+            <q-tooltip v-if="$q.screen.lt.md" :offset="[3, 3]">{{ menu.label }}</q-tooltip>
+          </q-btn>
         </template>
 
-        <div class="q-pa-md"></div>
+        <template v-if="$q.screen.lt.md">
+          <div class="q-pa-xl text-white">
+            <div class="modal-skills-type">{{ getLabelTypeSkill() }}</div>
+            <div class="modal-skills-name">{{ spellSelected.name }}</div>
+            <div class="modal-skills-description">{{ spellSelected.description }}</div>
+          </div>
+
+          <div class="row justify-center items-center q-mb-xl q-gutter-md">
+            <q-img
+              v-if="champion"
+              class="cursor-pointer"
+              spinner-color="black"
+              width="42px"
+              height="42px"
+              :src="require('../../statics/league-of-legends/icons/passive/' + champion.passive.image.full)"
+              :style="spellSelected.name === champion.passive.name ? 'border: solid 2px #c9aa71' : ''"
+              @click="spellSelected = champion.passive"
+            />
+
+            <template v-for="(spell, i) in champion.spells">
+              <q-img
+                :key="i"
+                v-if="champion"
+                class="cursor-pointer"
+                spinner-color="black"
+                width="42px"
+                height="42px"
+                :src="require('../../statics/league-of-legends/icons/spell/' + spell.image.full)"
+                :style="spellSelected.name === spell.name ? 'border: solid 2px #c9aa71' : ''"
+                @click="spellSelected = spell"
+              />
+            </template>
+          </div>
+        </template>
+
+        <div v-if="$q.screen.gt.sm" class="q-pa-md" />
       </div>
     </div>
 

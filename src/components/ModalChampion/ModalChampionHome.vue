@@ -32,11 +32,13 @@
             rounded
             color="dark"
             class="modal-home-between-divs"
-            :label="menu.label"
-            :icon="$q.screen.gt.sm ? menu.icon : undefined"
+            :label="$q.screen.gt.sm ? menu.label : ''"
+            :icon="menu.icon"
             :style="menu.style"
             @click="menu.action()"
-          />
+          >
+            <q-tooltip v-if="$q.screen.lt.md" :offset="[3, 3]">{{ menu.label }}</q-tooltip>
+          </q-btn>
         </template>
 
         <template v-if="$q.screen.lt.md">
@@ -60,7 +62,7 @@
           </div>
         </template>
 
-        <div v-if="$q.screen.gt.sm" class="q-pa-md"></div>
+        <div v-if="$q.screen.gt.sm" class="q-pa-md" />
       </div>
     </div>
 

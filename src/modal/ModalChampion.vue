@@ -1,5 +1,5 @@
 <template>
-  <q-dialog ref="modal" persistent transition-show="scale" transition-hide="scale" :maximized="$q.screen.xs">
+  <q-dialog ref="modal" persistent transition-show="scale" transition-hide="scale">
     <keep-alive>
       <component :is="view" ref="view" :champion="champion"/>
     </keep-alive>
@@ -42,6 +42,7 @@ export default {
     },
 
     setView (view) {
+      this.$closeAllTooltips(this.$root)
       this.view = view
 
       return new Promise(resolve => {

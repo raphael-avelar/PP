@@ -2,7 +2,7 @@
   <div class="fit row items-stretch content-stretch bg-dark">
     <q-page class="fit shadow-24" :style="getStyle()">
       <div class="row justify-center q-py-lg q-px-xl q-gutter-lg">
-        <q-input rounded filled outlined v-model="searchChampion" dense dark class="col-6" placeholder="Procurar Campeão...">
+        <q-input rounded filled outlined v-model="searchChampion" dense dark :class="$q.screen.xs ? 'col-12' : 'col-6'" placeholder="Procurar Campeão...">
           <template v-slot:append>
             <q-icon name="search" dense style="color: white"/>
           </template>
@@ -23,10 +23,14 @@
         </div>
       </div>
 
-      <q-scroll-area style="height: calc(100vh - 138px)">
+      <q-scroll-area :style="$q.screen.xs ? 'height: calc(100vh - 200px)' : 'height: calc(100vh - 138px)'">
         <div class="row justify-center">
           <template v-for="(champion, i) in championsFilter">
-            <div :key="i" class="q-py-md" style="height: 6.25rem; width: 8.75rem">
+            <div
+              :key="i"
+              class="q-py-md"
+              :style="`height: 6.25rem; width: ${$q.screen.xs ? '7.5rem' : '8.75rem'}`"
+            >
               <div class="row justify-center">
                 <q-img
                   :src="champion.icon"

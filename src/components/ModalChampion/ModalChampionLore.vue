@@ -7,7 +7,7 @@
         spinner-color="black"
         img-class="modal-lore-img-champion"
       >
-        <div class="fit row justify-center bg-transparent" v-if="!$q.screen.xs">
+        <div class="fit row justify-center bg-transparent" v-if="$q.screen.gt.sm">
           <div class="column items-center">
             <div class="modal-lore-champion-title">{{ champion.title }}</div>
             <div class="modal-lore-champion-name">{{ champion.name }}</div>
@@ -23,6 +23,11 @@
             </div>
           </div>
         </div>
+
+        <div v-else class="fixed-center bg-transparent">
+          <div class="modal-lore-champion-name">{{ champion.name }}</div>
+          <div class="text-center modal-lore-champion-name" style="font-size: 14px">Lore</div>
+        </div>
       </q-img>
 
       <div class="col bg-dark">
@@ -32,14 +37,34 @@
             rounded
             color="dark"
             class="modal-lore-between-divs"
-            :label="menu.label"
+            :label="$q.screen.gt.sm ? menu.label : ''"
             :icon="menu.icon"
             :style="menu.style"
             @click="menu.action()"
-          />
+          >
+            <q-tooltip v-if="$q.screen.lt.md" :offset="[3, 3]">{{ menu.label }}</q-tooltip>
+          </q-btn>
         </template>
 
-        <div class="q-pa-md"></div>
+        <template v-if="$q.screen.lt.md">
+          <div class="fit row justify-center q-mt-xl">
+            <div class="column items-center">
+              <div class="modal-lore-champion-title" style="font-size: 17px">{{ champion.title }}</div>
+
+              <div class="q-px-xl q-pt-lg" style="text-align: justify">
+                <div class="q-px-sm text-white">{{ champion.lore }}</div>
+              </div>
+
+              <div class="q-pa-md" style="text-align: center">
+                <q-img :src="champion.tag.img" />
+                <div class="q-py-xs text-white">FUNÇÃO</div>
+                <div style="color: #c9aa71">{{ champion.tag.label }}</div>
+              </div>
+            </div>
+          </div>
+        </template>
+
+        <div v-if="$q.screen.gt.sm" class="q-pa-md" />
       </div>
     </div>
 
