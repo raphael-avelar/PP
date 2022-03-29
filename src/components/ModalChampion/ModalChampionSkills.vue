@@ -8,10 +8,10 @@
         img-class="modal-skills-img-champion"
       >
         <template v-if="$q.screen.gt.sm">
-          <div class="fixed-center bg-transparent">
+          <div class="absolute-center bg-transparent">
             <div class="modal-skills-type">{{ getLabelTypeSkill() }}</div>
             <div class="modal-skills-name">{{ spellSelected.name }}</div>
-            <div class="modal-skills-description">{{ spellSelected.description }}</div>
+            <div class="modal-skills-description q-pb-xl">{{ spellSelected.description }}</div>
           </div>
 
           <div class="fixed-bottom row justify-center items-center bg-transparent q-mb-xl q-gutter-lg">
