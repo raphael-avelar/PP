@@ -35,9 +35,9 @@ export default {
           separator: true
         },
         {
-          label: 'Histórico de Partidas',
-          to: '/matchHistory',
-          icon: 'mdi-script-text',
+          label: 'Itens',
+          to: '/items',
+          icon: 'security',
           separator: true
         },
         {

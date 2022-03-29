@@ -7,9 +7,9 @@
         push
         rounded
         color="dark"
-        label="Histórico de Partidas"
-        icon="mdi-script-text"
-        @click="$router.push({ name: 'MatchHistory' })"
+        label="Itens"
+        icon="security"
+        @click="$router.push({ name: 'Items' })"
       />
 
       <q-btn

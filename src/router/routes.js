@@ -11,9 +11,9 @@ const routes = [
         props: true
       },
       {
-        path: '/matchHistory',
-        name: 'MatchHistory',
-        component: () => import('src/pages/MatchHistory.vue'),
+        path: '/items',
+        name: 'Items',
+        component: () => import('src/pages/Items.vue'),
         props: true
       },
       {

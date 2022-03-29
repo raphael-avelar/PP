@@ -24,15 +24,18 @@
       <router-view />
     </q-page-container>
 
-    <modal-champion ref="modalChampion" :leftDrawerOpen="leftDrawerOpen"/>
+    <modal-champion ref="modalChampion" />
+    <modal-item ref="modalItem" />
   </q-layout>
 </template>
+
 <script>
 import ModalChampion from '../modal/ModalChampion.vue'
+import ModalItem from '../modal/ModalItem.vue'
 import MenuLateral from '../components/MenuLateral'
 
 export default {
-  components: { ModalChampion, MenuLateral },
+  components: { ModalChampion, ModalItem, MenuLateral },
 
   data () {
     return {
@@ -48,6 +51,7 @@ export default {
     createRefsModals () {
       this.$root.modal = {}
       this.$root.modal.modalChampion = this.$refs.modalChampion
+      this.$root.modal.modalItem = this.$refs.modalItem
     }
   }
 }

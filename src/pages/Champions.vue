@@ -1,6 +1,6 @@
 <template>
   <div class="fit row items-stretch content-stretch bg-dark">
-    <q-page class="fit shadow-24" :style="getStyle()">
+    <q-page class="fit shadow-24" :style="getStylePage()">
       <div class="row justify-center q-py-lg q-px-xl q-gutter-lg">
         <q-input rounded filled outlined v-model="searchChampion" dense dark :class="$q.screen.xs ? 'col-12' : 'col-6'" placeholder="Procurar Campeão...">
           <template v-slot:append>
@@ -37,7 +37,7 @@
                   spinner-color="black"
                   @click="$root.modal.modalChampion.show(champion)"
                   class="cursor-pointer"
-                  style="height: 48px; max-width: 48px;"
+                  style="height: 48px; max-width: 48px"
                 />
               </div>
 
@@ -113,7 +113,7 @@ export default {
       this.tagFilter = this.tagFilter === tag ? null : tag
     },
 
-    getStyle () {
+    getStylePage () {
       if (this.$q.screen.sm) return 'margin-left: 3rem; margin-right: 3rem'
       if (this.$q.screen.gt.sm) return 'margin-left: 14rem; margin-right: 14rem'
 
