@@ -26,8 +26,6 @@
                 <q-img
                   :src="item.icon"
                   spinner-color="black"
-                  @click="$root.modal.modalItem.show(item)"
-                  class="cursor-pointer"
                   style="height: 44px; max-width: 44px; border: solid 1px #c9aa71"
                 />
               </div>
