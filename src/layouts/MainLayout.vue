@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import ModalChampion from '../modal/ModalChampion.vue'
 import ModalItem from '../modal/ModalItem.vue'
 import MenuLateral from '../components/MenuLateral'
@@ -45,6 +46,7 @@ export default {
 
   mounted () {
     this.createRefsModals()
+    this.registerSetMenu()
   },
 
   methods: {
@@ -52,6 +54,24 @@ export default {
       this.$root.modal = {}
       this.$root.modal.modalChampion = this.$refs.modalChampion
       this.$root.modal.modalItem = this.$refs.modalItem
+    },
+
+    registerSetMenu () {
+      Vue.prototype.$setMenu = route => {
+        return new Promise(resolve => {
+          if (this.$route.path !== route) this.$router.push({ path: route })
+
+          setTimeout(() => {
+            resolve(this.$refs[route])
+          }, 200)
+        })
+      }
+
+      // Exemplo de utilização para setMenu
+
+      // this.$setMenu('/champions').then(comp => {
+      //   comp.execMethod()
+      // })
     }
   }
 }

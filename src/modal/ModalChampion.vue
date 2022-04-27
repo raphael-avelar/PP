@@ -29,6 +29,7 @@ export default {
 
   data () {
     return {
+      resolveModal: null,
       view: 'ModalChampionHome',
       champion: null
     }
@@ -39,6 +40,14 @@ export default {
       this.$refs.modal.show()
       this.view = 'ModalChampionHome'
       this.champion = champion
+
+      return new Promise(resolve => {
+        this.resolveModal = resolve
+      })
+    },
+
+    confirm () {
+      this.resolveModal('Resolve success')
     },
 
     setView (view) {
