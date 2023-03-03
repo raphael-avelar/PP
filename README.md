@@ -18,7 +18,7 @@ npm install
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
-quasar dev
+quasar dev | npm run dev (node version more then 16.19.1)
 ```
 
 ### Build the app for production
@@ -28,8 +28,3 @@ quasar build
 
 ### Customize the configuration
 See [Configuring quasar.conf.js](https://v1.quasar.dev/quasar-cli/quasar-conf-js).
-
-### Start the app in development with node version more then 16.19.1
-```bash
-npm run dev
-```
