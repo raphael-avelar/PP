@@ -1,17 +1,34 @@
-# wiki-league (EM CONSTRUÇÃO)
+<h1 align="center">Wiki League</h1>
 
-Projeto pessoal destinado a fornecer informações sobre o jogo League of Legends, parcilamente desenvolvido. (DESENVOLVIMENTO PARADO NO MOMENTO)
+<p align="center">
+Projeto pessoal destinado a fornecer informações sobre o jogo League of Legends, parcialmente desenvolvido. <br> (Desenvolvimento parado no momento)
+</p>
 
-Tecnologias:
-  - JavaScript
-  - VueJs
-  - Quasar Framework (Biblioteca de componentes)
+<br>
 
-Arquivos/Dados/Imagens dos personagens:
- - Fornecidos pela empresa e dona do jogo Riot Games através da própria documentação que da suporte a desenvolvedores com intuito em criar algo para o jogo.
+## 🚀 Tecnologias
 
+Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-## Install the dependencies
+- JavaScript
+- VueJs
+- Quasar Framework (Biblioteca de componentes)
+- HTML/CSS
+
+## 💻 Projeto
+
+O Wiki League tem como foco principal disponibilizar informações gerais do jogo League of Legends, tornando assim fácil acesso aos dados em uma interface limpa e amigável.
+
+- [Visite o projeto online](https://wiki-league.vercel.app)
+
+ ## Arquivos/Dados/Imagens dos personagens 
+ - Fornecidos pela empresa e dona do jogo Riot Games através da própria documentação que dá suporte a desenvolvedores com intuito em criar algo para o jogo.
+
+<br>
+
+## ⚙ Construindo aplicação
+
+### Install the dependencies
 ```bash
 npm install
 ```
