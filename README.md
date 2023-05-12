@@ -21,7 +21,7 @@ O Wiki League tem como foco principal disponibilizar informações gerais do jog
 
 - [Visite o projeto online](https://wiki-league.vercel.app)
 
- ## Arquivos/Dados/Imagens dos personagens 
+ ### Arquivos/Dados/Imagens dos personagens 
  - Fornecidos pela empresa e dona do jogo Riot Games através da própria documentação que dá suporte a desenvolvedores com intuito em criar algo para o jogo.
 
 <br>
